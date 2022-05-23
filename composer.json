@@ -1,19 +1,19 @@
 {
-    "name": "nusagate/nusagte-php",
-    "type": "library",
-    "license": "MIT",
-    "autoload": {
-        "psr-4": {
-            "Nusagate\\NusagtePhp\\": "src/"
-        }
-    },
-    "authors": [
-        {
-            "name": "Salman Abdurrohman",
-            "email": "salmanabdurrohman11@gmail.com"
-        }
-    ],
-    "require": {
-        "guzzlehttp/guzzle": "^7.0"
+  "name": "nusagate/nusagate-php",
+  "type": "library",
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "Nusagate\\NusagtePhp\\": "src/"
     }
+  },
+  "authors": [
+    {
+      "name": "Salman Abdurrohman",
+      "email": "salmanabdurrohman11@gmail.com"
+    }
+  ],
+  "require": {
+    "guzzlehttp/guzzle": "^7.0"
+  }
 }
