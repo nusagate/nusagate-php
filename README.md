@@ -1,6 +1,6 @@
-# Nusagate API Client - Node.js
+# Nusagate API Client - PHP
 
-The official Node.js library for the Nusagate API.
+The official PHP library for the Nusagate API.
 
 Visit https://nusagate.com.
 
