@@ -80,26 +80,52 @@ class Nusagate {
     return $response->getBody()->getContents();
   }
 
-  function createWithdrawal($data) 
+  function availableCurrency() 
   {
     $client = new Client(
       ['headers' => ['Authorization' => 'Basic ' . base64_encode($this->api_key . ':' . $this->secret_key)]]
     );
+    $response = $client->request('GET', $this->getBaseUrl() . '/v1/invoices/available-currency');
 
+    return $response->getBody()->getContents();
+  }
+
+   function estimateAmount() 
+  {
+    $client = new Client(
+      ['headers' => ['Authorization' => 'Basic ' . base64_encode($this->api_key . ':' . $this->secret_key)]]
+    );
     $req_body = [
-        'address' => $data['address'],
-        'amount' => $data['amount'],
-        'currencyCode' => $data['currencyCode'],
-      ];
-    
-    $response = $client->request('POST', $this->getBaseUrl() . '/v1/withdrawals/', [
+      'price' => $data['price'],
+    ];
+    $response = $client->request('POST', $this->getBaseUrl() . '/v1/invoices/estimate-amount', [
       'form_params' => $req_body
     ]);
 
     return $response->getBody()->getContents();
   }
 
-  function calculateWithdrawal($data)
+  function createTransfer($data) 
+  {
+    $client = new Client(
+      ['headers' => ['Authorization' => 'Basic ' . base64_encode($this->api_key . ':' . $this->secret_key)]]
+    );
+
+    $req_body = [
+        'externalId' => $data['externalId'],
+        'address' => $data['address'],
+        'amount' => $data['amount'],
+        'currencyCode' => $data['currencyCode'],
+      ];
+    
+    $response = $client->request('POST', $this->getBaseUrl() . '/v1/merchant-transfers/', [
+      'form_params' => $req_body
+    ]);
+
+    return $response->getBody()->getContents();
+  }
+
+  function calculateTransfer($data)
   {
     $client = new Client(
       ['headers' => ['Authorization' => 'Basic ' . base64_encode($this->api_key . ':' . $this->secret_key)]]
@@ -111,14 +137,14 @@ class Nusagate {
       'currencyCode' => $data['currency_code'],
     ];
     var_dump($req_body);
-    $response = $client->request('POST', $this->getBaseUrl() . '/v1/withdrawals/calculate', [
+    $response = $client->request('POST', $this->getBaseUrl() . '/v1/merchant-transfers/calculate', [
       'form_params' => $req_body
     ]);
 
     return $response->getBody()->getContents();
   }
 
-  function getWithdrawals($query = []) 
+  function getTransfers($query = []) 
   {
     $client = new Client(
       ['headers' => ['Authorization' => 'Basic ' . base64_encode($this->api_key . ':' . $this->secret_key)]]
@@ -130,17 +156,17 @@ class Nusagate {
     $fromDate = $query['fromDate'] ?? '';
     $toDate = $query['toDate'] ?? '';
     
-    $response = $client->request('GET', $this->getBaseUrl() . '/v1/withdrawals' . '?page=' . $page . '&perPage=' . $perPage . '&status=' . $status);
+    $response = $client->request('GET', $this->getBaseUrl() . '/v1/merchant-transfers' . '?page=' . $page . '&perPage=' . $perPage . '&status=' . $status);
 
     return $response->getBody()->getContents();
   }
 
-  function getWithdrawalById()
+  function getTransferById()
   {
     $client = new Client(
       ['headers' => ['Authorization' => 'Basic ' . base64_encode($this->api_key . ':' . $this->secret_key)]]
     );
-    $response = $client->request('GET', $this->getBaseUrl() . '/v1/withdrawals/' . $id);
+    $response = $client->request('GET', $this->getBaseUrl() . '/v1/merchant-transfers/' . $id);
 
     return $response->getBody()->getContents();
   }

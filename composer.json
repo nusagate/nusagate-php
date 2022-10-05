@@ -1,5 +1,6 @@
 {
   "name": "nusagate/nusagate-php",
+  "description": "The official PHP library for the Nusagate API.",
   "type": "library",
   "license": "MIT",
   "autoload": {
