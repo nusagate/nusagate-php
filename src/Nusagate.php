@@ -47,12 +47,12 @@ class Nusagate {
     );
 
     $page = $query['page'] ?? '';
-    $perPage = $query['perPage'] ?? '';
+    $perPage = $query['per_page'] ?? '';
     $status = $query['status'] ?? '';
-    $fromDate = $query['fromDate'] ?? '';
-    $toDate = $query['toDate'] ?? '';
-    $orderBy = $query['orderBy'] ?? '';
-    $sortBy = $query['sortBy'] ?? '';
+    $fromDate = $query['from_date'] ?? '';
+    $toDate = $query['to_date'] ?? '';
+    $orderBy = $query['order_by'] ?? '';
+    $sortBy = $query['sort_by'] ?? '';
     $search = $query['search'] ?? '';
     
     $response = $client->request('GET', $this->getBaseUrl() . '/v1/invoices' . '?page=' . $page . '&perPage=' . $perPage . '&status=' . $status . '&orderBy=' . $orderBy . '&sortBy=' . $sortBy . '&search=' . $search );
@@ -90,7 +90,7 @@ class Nusagate {
     return $response->getBody()->getContents();
   }
 
-   function estimateAmount() 
+   function estimateAmount($data) 
   {
     $client = new Client(
       ['headers' => ['Authorization' => 'Basic ' . base64_encode($this->api_key . ':' . $this->secret_key)]]
@@ -112,12 +112,12 @@ class Nusagate {
     );
 
     $req_body = [
-        'externalId' => $data['externalId'],
+        'externalId' => $data['external_id'],
         'address' => $data['address'],
         'amount' => $data['amount'],
-        'currencyCode' => $data['currencyCode'],
+        'currencyCode' => $data['currency_code'],
       ];
-    
+
     $response = $client->request('POST', $this->getBaseUrl() . '/v1/merchant-transfers/', [
       'form_params' => $req_body
     ]);
@@ -151,10 +151,10 @@ class Nusagate {
     );
 
     $page = $query['page'] ?? '';
-    $perPage = $query['perPage'] ?? '';
+    $perPage = $query['per_page'] ?? '';
     $status = $query['status'] ?? '';
-    $fromDate = $query['fromDate'] ?? '';
-    $toDate = $query['toDate'] ?? '';
+    $fromDate = $query['from_date'] ?? '';
+    $toDate = $query['to_date'] ?? '';
     
     $response = $client->request('GET', $this->getBaseUrl() . '/v1/merchant-transfers' . '?page=' . $page . '&perPage=' . $perPage . '&status=' . $status);
 
