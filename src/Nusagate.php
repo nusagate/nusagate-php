@@ -60,7 +60,7 @@ class Nusagate {
     return $response->getBody()->getContents();
   }
 
-  function getInvoiceById() 
+  function getInvoiceById($id) 
   {
     $client = new Client(
       ['headers' => ['Authorization' => 'Basic ' . base64_encode($this->api_key . ':' . $this->secret_key)]]
@@ -161,7 +161,7 @@ class Nusagate {
     return $response->getBody()->getContents();
   }
 
-  function getTransferById()
+  function getTransferById($id)
   {
     $client = new Client(
       ['headers' => ['Authorization' => 'Basic ' . base64_encode($this->api_key . ':' . $this->secret_key)]]
