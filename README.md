@@ -8,6 +8,8 @@ Visit https://nusagate.com.
 
 For more details visit [Nusagate API docs](https://nusagate.docs.apiary.io/#).
 
+You can see example [here](examples/).
+
 ## 2. Installation
 
 ```sh
@@ -19,5 +21,5 @@ composer require nusagate/nusagate-php
 Get your api key and secret key from [Nusagate Dashboard](https://dashboard.nusagate.com/).
 
 ```php
-$nusagate = new App\Nusagate(false, '71dfcab...','7be9c28...');
+$nusagate = new Nusagate(true, 'YOUR_API_KEY','YOUR_SECRET_KEY');
 ```
