@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace Nusagate;
 require 'vendor/autoload.php';
 use GuzzleHttp\Client;
 
